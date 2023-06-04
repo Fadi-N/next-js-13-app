@@ -1,6 +1,7 @@
 import {Nunito} from "next/font/google"
 import './globals.css'
 import Navbar from "@/app/components/navbar/Navbar";
+import Modal from "@/app/components/Modal/Modal";
 
 export const metadata = {
     title: 'Create Next App',
@@ -13,14 +14,13 @@ const font = Nunito({
     subsets: ["latin"]
 })
 
-export default function RootLayout({
-                                       children,
-                                   }: {
+export default function RootLayout({children}: {
     children: React.ReactNode
 }) {
     return (
         <html lang="en">
         <body className={font.className}>
+        <Modal actionLabel="Submit" title="Title" isOpen/>
         <Navbar/>
         {children}
         </body>
