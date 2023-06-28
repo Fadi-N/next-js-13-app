@@ -8,6 +8,7 @@ import {FieldValue, FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import axios from "axios";
 import Heading from "@/app/components/Heading";
 import Input from "@/app/components/inputs/Input";
+import toast from "react-hot-toast";
 
 const RegisterModal = () => {
     const registerModal = useRegisterModal();
@@ -29,7 +30,8 @@ const RegisterModal = () => {
                 registerModal.onClose();
             })
             .catch((error) => {
-                console.log(error)
+                // https://www.npmjs.com/package/react-hot-toast
+                toast.error('Something went wrong!')
             })
             .finally(() => {
                 setIsLoading(false)
