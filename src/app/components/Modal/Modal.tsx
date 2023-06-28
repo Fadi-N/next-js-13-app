@@ -81,6 +81,7 @@ const Modal = ({isOpen, onClose, onSubmit, title, body, footer, actionLabel, dis
                                     )}
                                     <Button label={actionLabel} onClick={handleSubmit} disabled={disabled}/>
                                 </div>
+                                {footer}
                             </div>
                         </div>
                     </div>
