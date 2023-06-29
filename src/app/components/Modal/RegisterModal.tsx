@@ -4,7 +4,7 @@
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "@/app/components/Modal/Modal";
 import {useState} from "react";
-import {FieldValue, FieldValues, SubmitHandler, useForm} from "react-hook-form";
+import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import axios from "axios";
 import Heading from "@/app/components/Heading";
 import Input from "@/app/components/inputs/Input";
