@@ -3,6 +3,8 @@ import './globals.css'
 import Navbar from "@/app/components/navbar/Navbar";
 import RegisterModal from "@/app/components/Modal/RegisterModal";
 import ToasterProvider from "@/app/providers/ToasterProvider";
+import LoginModal from "@/app/components/Modal/LoginModal";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 
 export const metadata = {
     title: 'Create Next App',
@@ -15,15 +17,17 @@ const font = Nunito({
     subsets: ["latin"]
 })
 
-export default function RootLayout({children}: {
+export default async function RootLayout({children}: {
     children: React.ReactNode
 }) {
+    const currentUser = await getCurrentUser()
     return (
         <html lang="en">
         <body className={font.className}>
         <ToasterProvider/>
+        <LoginModal/>
         <RegisterModal/>
-        <Navbar/>
+        <Navbar currentUser={currentUser}/>
         {children}
         </body>
         </html>
