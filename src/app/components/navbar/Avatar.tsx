@@ -1,9 +1,14 @@
 'use client'
-const Avatar = () =>{
+
+import Image from "next/image";
+
+interface AvatarPropos{
+    src: string | null | undefined
+}
+
+const Avatar = ({src} : AvatarPropos) =>{
     return(
-        <div className="">
-            Image
-        </div>
+        <Image className="rounded-full" src={src || "/images/placeholder.jpg"} width={30} height={30} alt="Avatar"/>
     )
 }
 
