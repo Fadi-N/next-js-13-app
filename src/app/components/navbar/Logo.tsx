@@ -5,7 +5,7 @@ import Image from "next/image";
 const Logo = () =>{
     const router = useRouter()
     return(
-        <div className="hidden md:block cursor-pointer">
+        <div className="hidden md:block cursor-pointer" onClick={() => router.push("/")}>
             LOGO
         </div>
         /*<Image className="hidden md:block cursor-pointer" src={} alt="Logo" height="100" width="100"/>*/
