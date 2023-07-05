@@ -3,7 +3,7 @@
 // https://www.npmjs.com/package/react-hook-form
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "@/app/components/Modal/Modal";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 import {FieldValues, SubmitHandler, useForm} from "react-hook-form";
 import axios from "axios";
 import Heading from "@/app/components/Heading";
@@ -18,6 +18,7 @@ import {useRouter} from "next/navigation";
 
 const LoginModal = () => {
     const router = useRouter()
+    const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const [isLoading, setIsLoading] = useState(false);
 
@@ -45,6 +46,11 @@ const LoginModal = () => {
                 }
             })
     }
+
+    const toggle = useCallback(()=>{
+        loginModal.onClose();
+        registerModal.onOpen();
+    },[loginModal, registerModal])
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
@@ -77,8 +83,8 @@ const LoginModal = () => {
             <Button outline label="Continue with Github" icon={AiFillGithub} onClick={() => signIn("github")}/>
             <div className="text-neutral-500 text-center mt-4 font-light">
                 <div className="flex flex-row justify-center items-center gap-2">
-                    <div>Already have an account?</div>
-                    <div className="text-neutral-800 cursor-pointer hover:underline" onClick={loginModal.onClose}>Log in</div>
+                    <div>First time using Airbnb?</div>
+                    <div className="text-neutral-800 cursor-pointer hover:underline" onClick={toggle}>Create an account</div>
                 </div>
             </div>
         </div>
