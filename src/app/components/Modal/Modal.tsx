@@ -77,7 +77,7 @@ const Modal = ({isOpen, onClose, onSubmit, title, body, footer, actionLabel, dis
                             <div className="flex flex-col gap-2 p-6">
                                 <div className="flex flex-row items-center gap-4 w-full">
                                     {secondaryAction && secondaryActionLabel &&(
-                                        <Button label={secondaryActionLabel} onClick={handleSecondaryAction} outline disabled/>
+                                        <Button label={secondaryActionLabel} onClick={handleSecondaryAction} outline disabled={disabled}/>
                                     )}
                                     <Button label={actionLabel} onClick={handleSubmit} disabled={disabled}/>
                                 </div>
