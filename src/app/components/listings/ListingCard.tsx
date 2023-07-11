@@ -17,12 +17,12 @@ interface ListingCardProps {
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
-    currentUSer?: SafeUser | null;
+    currentUser?: SafeUser | null;
 }
 
 const ListingCard = ({
                          data,
-                         currentUSer,
+                         currentUser,
                          actionId = "",
                          onAction,
                          actionLabel,
@@ -76,7 +76,7 @@ const ListingCard = ({
                     <div className="absolute top-3 right-3">
                         <HeartButton
                             listingId={data.id}
-                            currentUser={currentUSer}
+                            currentUser={currentUser}
                         />
                     </div>
                 </div>

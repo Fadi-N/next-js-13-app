@@ -8,7 +8,6 @@ import getCurrentUser from "@/app/actions/getCurrentUser";
 export default async function Home() {
     const listings = await getListings();
     const currentUser = await getCurrentUser();
-    const isEmpty = true;
 
     if (listings.length === 0) {
         return (
@@ -28,6 +27,7 @@ export default async function Home() {
                             <ListingCard
                                 key={listing.id}
                                 data={listing}
+                                currentUser={currentUser}
                             />
                         )
                     })}
