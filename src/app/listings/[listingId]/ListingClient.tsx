@@ -2,12 +2,11 @@
 
 // https://www.npmjs.com/package/date-fns
 
-import {SafeListing, SafeUser} from "@/app/types";
+import {SafeListing, SafeReservation, SafeUser} from "@/app/types";
 import {useCallback, useEffect, useMemo, useState} from "react";
 import {categories} from "@/app/components/navbar/Categories";
 import ListingHead from "@/app/components/listings/ListingHead";
 import ListingInfo from "@/app/components/listings/ListingInfo";
-import {Reservation} from ".prisma/client";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import {useRouter} from "next/navigation";
 import {differenceInCalendarDays, eachDayOfInterval} from "date-fns";
@@ -23,7 +22,7 @@ const initialDateRange = {
 }
 
 interface ListingClientProps {
-    reservations?: Reservation[];
+    reservations?: SafeReservation[];
     listing: SafeListing & {
         user: SafeUser
     };
