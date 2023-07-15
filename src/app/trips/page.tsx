@@ -5,7 +5,7 @@ import getReservations from "@/app/actions/getReservations";
 import TripsClient from "@/app/trips/TripsClient";
 
 const TripsPage = async () => {
-    const currentUser = getCurrentUser();
+    const currentUser = await getCurrentUser();
     if (!currentUser) {
         return (
             <ClientOnly>

@@ -3,7 +3,7 @@
 import {SafeListing, SafeReservation, SafeUser} from "@/app/types";
 import {useRouter} from "next/navigation";
 import useCountries from "@/app/hooks/useCountries";
-import {useCallback, useMemo} from "react";
+import React, {useCallback, useMemo} from "react";
 import {format} from "date-fns";
 import Image from "next/image";
 import HeartButton from "@/app/components/HeartButton";
@@ -33,7 +33,7 @@ const ListingCard = ({
 
     const location = getByValue(data.locationValue)
 
-    const handleCancel = useCallback((e: MouseEvent) => {
+    const handleCancel = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.stopPropagation();
         if (disabled) {
             return;
