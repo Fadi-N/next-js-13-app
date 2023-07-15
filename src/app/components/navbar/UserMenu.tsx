@@ -6,15 +6,18 @@ import MenuItem from "@/app/components/navbar/MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import {signOut} from "next-auth/react";
-import {SafeUSer} from "@/app/types";
+import {SafeUser} from "@/app/types";
 import useRentModal from "@/app/hooks/useRentModal";
+import {router} from "next/client";
+import {useRouter} from "next/navigation";
 
 
 interface UserMenuProps {
-    currentUser?: SafeUSer | null
+    currentUser?: SafeUser | null
 }
 
 const UserMenu = ({currentUser}: UserMenuProps) => {
+    const router = useRouter();
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
     const rentModal = useRentModal();
@@ -57,8 +60,7 @@ const UserMenu = ({currentUser}: UserMenuProps) => {
                     <div className="flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
-                                <MenuItem onClick={() => {
-                                }} label="My trips"/>
+                                <MenuItem onClick={() => router.push("/trips")} label="My trips"/>
                                 <MenuItem onClick={() => {
                                 }} label="My favorites"/>
                                 <MenuItem onClick={() => {
