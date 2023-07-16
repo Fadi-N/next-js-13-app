@@ -6,6 +6,7 @@ import ToasterProvider from "@/app/providers/ToasterProvider";
 import LoginModal from "@/app/components/Modal/LoginModal";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import RentModal from "@/app/components/Modal/RentModal";
+import SearchModal from "@/app/components/Modal/SearchModal";
 
 export const metadata = {
     title: 'Create Next App',
@@ -26,6 +27,7 @@ export default async function RootLayout({children}: {
         <html lang="en">
         <body className={font.className}>
         <ToasterProvider/>
+        <SearchModal/>
         <LoginModal/>
         <RegisterModal/>
         <RentModal/>
