@@ -1,4 +1,4 @@
-import prisma from "@/app/libs/prismadb";
+import prisma from "@/app/libs/prismadb"
 
 export interface IListingsParams {
     userId?: string;
@@ -11,21 +11,9 @@ export interface IListingsParams {
     category?: string;
 }
 
-export default async function getListings(
-    params: IListingsParams
-) {
+export default async function getListings(params: IListingsParams) {
     try {
-        const {
-            userId,
-            roomCount,
-            guestCount,
-            bathroomCount,
-            locationValue,
-            startDate,
-            endDate,
-            category,
-        } = params;
-
+        const {userId, guestCount, bathroomCount, roomCount, category, startDate, endDate, locationValue} = params;
         let query: any = {};
 
         if (userId) {
@@ -38,18 +26,21 @@ export default async function getListings(
 
         if (roomCount) {
             query.roomCount = {
+                // gte means greater than or equal and plus convert type string to number
                 gte: +roomCount
             }
         }
 
         if (guestCount) {
             query.guestCount = {
+                // gte means greater than or equal and plus convert type string to number
                 gte: +guestCount
             }
         }
 
         if (bathroomCount) {
             query.bathroomCount = {
+                // gte means greater than or equal and plus convert type string to number
                 gte: +bathroomCount
             }
         }
@@ -58,18 +49,19 @@ export default async function getListings(
             query.locationValue = locationValue;
         }
 
+        // Search for dates which are reserved for ex. from 20 to 30 room is reserved so if we search for it from 22 to 24 it will be not available
         if (startDate && endDate) {
             query.NOT = {
                 reservations: {
                     some: {
                         OR: [
                             {
-                                endDate: { gte: startDate },
-                                startDate: { lte: startDate }
+                                endDate: {gte: startDate},
+                                startDate: {lte: startDate},
                             },
                             {
-                                startDate: { lte: endDate },
-                                endDate: { gte: endDate }
+                                startDate: {lte: endDate},
+                                endDate: {gte: endDate},
                             }
                         ]
                     }
@@ -80,9 +72,9 @@ export default async function getListings(
         const listings = await prisma.listing.findMany({
             where: query,
             orderBy: {
-                CreatedAt: 'desc'
+                CreatedAt: "desc"
             }
-        });
+        })
 
         const safeListings = listings.map((listing) => ({
             ...listing,
@@ -91,6 +83,6 @@ export default async function getListings(
 
         return safeListings;
     } catch (error: any) {
-        throw new Error(error);
+        throw new Error(error)
     }
 }
