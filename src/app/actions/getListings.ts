@@ -1,7 +1,7 @@
 import prisma from "@/app/libs/prismadb"
 
 export interface IListingsParams {
-    userId?: string;
+    userId: string | null;
     guestCount?: number;
     roomCount?: number;
     bathroomCount?: number;
@@ -80,7 +80,6 @@ export default async function getListings(params: IListingsParams) {
             ...listing,
             createdAt: listing.CreatedAt.toISOString(),
         }));
-
         return safeListings;
     } catch (error: any) {
         throw new Error(error)
